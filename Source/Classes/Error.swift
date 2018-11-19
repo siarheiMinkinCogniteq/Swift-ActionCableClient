@@ -21,6 +21,7 @@
 //
 
 import Foundation
+import Starscream
 
 enum SerializationError : Swift.Error {
     case json
