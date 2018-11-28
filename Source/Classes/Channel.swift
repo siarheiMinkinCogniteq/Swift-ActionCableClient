@@ -51,12 +51,16 @@ open class Channel: Hashable, Equatable {
         get {
             //defaults to channel name
             var channelUID = name
-            
+
             //if identifier isn't empty, fetch the first value as the channel unique identifier
-            if let dictionary = identifier?.first {
-                channelUID = dictionary.value as! String
+            if let dictionary = identifier, dictionary.count > 1 {
+                var identifier = name
+                for key in dictionary.keys.sorted() {
+                    identifier += "-\(key):\(dictionary[key] as? String ?? "")"
+                }
+                channelUID = identifier
             }
-            
+
             return channelUID
         }
     }
